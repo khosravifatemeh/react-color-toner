@@ -4,5 +4,8 @@ export const isValidColor = (color: string): boolean => {
   return isHexColor;
 };
 export const getColorToners = (color: string): string[] => {
-  return [];
+  return ["#fcba03", "#03fc4a"];
+};
+export const getSliceList = (list: string[], end: number) => {
+  return list.slice(0, end);
 };
