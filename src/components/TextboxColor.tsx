@@ -5,16 +5,23 @@ type Props = {
 };
 const TextboxColor: React.FC<Props> = ({ callback }) => {
   const [value, setValue] = useState("");
-  const [hasError, setHasError] = useState(false);
+  const [hasError, setHasError] = useState(true);
   function handleChange(e: any) {
     setValue(e.target.value);
-    if (isValidColor(value)) {
+    if (isValidColor(e.target.value)) {
       setHasError(false);
-      callback(value);
+      callback(e.target.value);
       return;
     }
     return setHasError(true);
   }
-  return <input type="text" value={value} onChange={(e) => handleChange(e)} />;
+  return (
+    <input
+      type="text"
+      value={value}
+      style={{ borderWidth: 1, borderColor: hasError ? "red" : "green" }}
+      onChange={(e) => handleChange(e)}
+    />
+  );
 };
 export default TextboxColor;
