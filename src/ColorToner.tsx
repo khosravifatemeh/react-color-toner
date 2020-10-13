@@ -16,7 +16,7 @@ function ColorToner() {
           setSelectedColorList(getSliceList(colorList, range))
         }
       />
-      <ListColor />
+      <ListColor items={selectedColorList} />
     </div>
   );
 }
