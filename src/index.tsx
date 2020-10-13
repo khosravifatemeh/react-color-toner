@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import ColorToner from "./ColorToner";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ColorToner />
   </React.StrictMode>,
   document.getElementById("root")
 );
