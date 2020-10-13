@@ -1,24 +1,38 @@
 import React, { useState, useEffect } from "react";
-import TextboxColor from "./components/TextboxColor";
-import SliderColor from "./components/SliderColor";
-import ListColor from "./components/ListColor";
+import TextboxColor from "./components/textbox/TextboxColor";
+import SliderColor from "./components/slider/SliderColor";
+import ListColor from "./components/list/ListColor";
 import { getColorToners, getSliceList } from "./utils";
+import "./ColorToner.scss";
 
-function ColorToner() {
+const ColorToner: React.FC = () => {
   const [colorList, setColorList] = useState<string[]>([]);
   const [selectedColorList, setSelectedColorList] = useState<string[]>([]);
+  const [range, setRange] = useState<number>(1);
+  const [validColor, setValidColor] = useState("");
+
+  useEffect(() => {
+    if (!colorList.length) return;
+    return setSelectedColorList(getSliceList(colorList, range));
+  }, [range]);
+
+  useEffect(() => {
+    if (!validColor) return;
+    return setColorList(getColorToners(validColor, "#000000", 40));
+  }, [validColor]);
+
+  useEffect(() => {
+    if (!validColor || !colorList.length) return;
+    return setSelectedColorList(getSliceList(colorList, range));
+  }, [validColor]);
 
   return (
-    <div>
-      <TextboxColor callback={(color) => setColorList(getColorToners(color))} />
-      <SliderColor
-        callback={(range) =>
-          setSelectedColorList(getSliceList(colorList, range))
-        }
-      />
+    <div className="container">
+      <TextboxColor callback={(color) => setValidColor(color)} />
+      <SliderColor value={range} callback={(range) => setRange(range)} />
       <ListColor items={selectedColorList} />
     </div>
   );
-}
+};
 
 export default ColorToner;
