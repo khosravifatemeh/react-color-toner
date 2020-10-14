@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { isValidColor } from "./../../utils";
+import { isValidColor } from "utils";
 
 type Props = {
   callback: (color: string) => void;

@@ -1,5 +1,5 @@
 import React from "react";
-import "./SliderColor.scss";
+import "components/slider/SliderColor.scss";
 
 type Props = {
   callback: (range: number) => void;

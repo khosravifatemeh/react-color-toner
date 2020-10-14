@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import TextboxColor from "./components/textbox/TextboxColor";
-import SliderColor from "./components/slider/SliderColor";
-import ListColor from "./components/list/ListColor";
-import { getColorToners, getSliceList } from "./utils";
-import "./ColorToner.scss";
+import React, { useState } from "react";
+import TextboxColor from "components/textbox/TextboxColor";
+import SliderColor from "components/slider/SliderColor";
+import ListColor from "components/list/ListColor";
+import { getColorToners, getSliceList } from "utils";
+import "ColorToner.scss";
 
 const ColorToner: React.FC = () => {
   const [colorList, setColorList] = useState<string[]>([]);

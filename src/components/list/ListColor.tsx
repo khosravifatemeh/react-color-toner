@@ -1,5 +1,5 @@
 import React from "react";
-import "./ListColor.scss";
+import "components/list/ListColor.scss";
 
 type Props = {
   items: string[];

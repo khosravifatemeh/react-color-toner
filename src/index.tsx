@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ColorToner from "./ColorToner";
+import ColorToner from "ColorToner";
 
 ReactDOM.render(
   <React.StrictMode>
