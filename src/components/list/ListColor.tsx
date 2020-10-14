@@ -6,8 +6,6 @@ type Props = {
 };
 
 const ListColor: React.FC<Props> = ({ items }) => {
-  console.log(items);
-
   return (
     <div className="list-container">
       {items.map((element: string, index) => (

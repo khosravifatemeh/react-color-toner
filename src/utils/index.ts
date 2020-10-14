@@ -1,18 +1,23 @@
 export const isValidColor = (color: string): boolean => {
   const isHexColor = /^#([0-9A-F]{3}){1,2}$/i.test(color);
-
   return isHexColor;
 };
+export const getSliceList = (list: string[], end: number): string[] => {
+  return list.slice(0, end);
+};
+
 export const getColorToners = (
   firstColor: string,
-  secondColor: string | "#000000",
-  numColors: number | 40
+  secondColor: string = "#000000",
+  numColors: number = 40
 ): string[] => {
+  console.log(firstColor);
+
   const color1 = convertHexToRgb(firstColor);
   const color2 = convertHexToRgb(secondColor);
   const factor = (1 / (numColors - 1)) * 0.3;
-
   const newColors = [];
+
   for (let index = 0; index < numColors; index++) {
     newColors.push(getNewColor(color1, color2, factor * index));
   }
@@ -25,6 +30,7 @@ const getNewColor = (
   factor: number
 ): string => {
   const result = firstColor;
+
   for (let index = 0; index < 3; index++) {
     result[index] = Math.round(
       firstColor[index] + factor * (secondColor[index] - firstColor[index])
@@ -32,11 +38,14 @@ const getNewColor = (
   }
   return convertRgbToHex(result);
 };
-export const getSliceList = (list: string[], end: number) => {
-  return list.slice(0, end);
+const modifyHex = (hex: string): string => {
+  return hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
 };
 const convertHexToRgb = (hex: string) => {
-  const match = hex.replace(/#/, "").match(/.{1,2}/g);
+  hex = hex.replace(/#/, "");
+  if (hex.length === 3) hex = modifyHex(hex);
+  const match = hex.match(/.{1,2}/g);
+
   return [
     parseInt(match![0], 16),
     parseInt(match![1], 16),
